@@ -6,7 +6,7 @@ Feature: TEST CASE-1
         
     Scenario: Register User              
         Then Click on Signup-Login button
-        Then Verify New User Signup! is visible
+        Then Verify 'New User Signup!' is visible
         Then Enter name and email address
         Then Click 'Signup' button
         Then Verify that ENTER ACCOUNT INFORMATION is visible

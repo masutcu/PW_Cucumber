@@ -29,13 +29,6 @@ Then('Click on Signup-Login button', async function () {
 });
 
 
-
-Then('Verify New User Signup! is visible', async function () {
-    await expect(page.getByRole('heading', { name: "New User Signup!" })).toBeVisible()
-});
-
-
-
 Then('Enter name and email address', async function () {
 
     randomName = faker.person.fullName()
@@ -63,6 +56,8 @@ Then('Click {string} button', async function (arg0) {
         await page.locator('[data-qa="signup-button"]').click()
     } else if (arg0 === "Login") {
         await page.locator('[data-qa="login-button"]').click()
+    } else if (arg0 === "Logout") {
+        await page.getByRole('link',{name:'Logout'}).click()
     } else {
         console.log("Locate tanımlaması yanlış.");
     }
@@ -167,6 +162,34 @@ Then('Verify that ACCOUNT DELETED! is visible and click {string} button', async 
     await expect(page.getByRole('heading', { name: "Account Deleted!" })).toBeVisible()
 
 });
+
+
+
+Then('Verify {string} is visible', async function (arg0) {
+            if (arg0 === "New User Signup!") {
+                await expect(page.getByRole('heading', { name: "New User Signup!" })).toBeVisible()
+            } else if (arg0 === "Login to your account") {
+                await expect(page.getByRole('heading', { name: "Login to your account" })).toBeVisible()
+            } else {
+                console.log("Locate tanımlaması yanlış.");
+            }
+            
+            
+});
+
+ 
+
+Then('Enter correct email address and password', async function () {
+
+            await page.getByPlaceholder('Email Address').first().fill('JulianSUTCU148@test.com')
+            await page.getByPlaceholder('Password').first().fill('Istanbul1453')
+          
+});
+
+Then('Verify that user is navigated to login page', async function () {
+            await expect(page).toHaveTitle(/Login/)
+});
+ 
 
 
 
