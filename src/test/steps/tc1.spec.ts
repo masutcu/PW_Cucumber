@@ -3,15 +3,19 @@ import { Given, When, Then, setDefaultTimeout } from "@cucumber/cucumber"
 import {page} from "../../corelib/base.spec"
 import { expect } from "@playwright/test"
 import { faker } from '@faker-js/faker'
+import  HomePage  from "../pages/homepage"
+import * as locate from "../locator/homepagelocator.json"
 
 //Bu sayfada POM kullanılmadı
 setDefaultTimeout(1000 * 60 * 2)
-
+let homePage:HomePage;
 let randomName: string;
 let randomEmail: string;
 
 When('Navigate to url {string}', async function (url) {
-    await page.goto(url);
+    homePage = new HomePage(page) //burada pom e göre uyarladık
+    await homePage.navigateToApp()
+    //await page.goto(url);
 });
 
 
@@ -25,7 +29,8 @@ Then('Verify that home page is visible successfully', async function () {
 
 
 Then('Click on Signup-Login button', async function () {
-    await page.getByRole('link', { name: ' Signup ' }).click()
+    const myElement=locate.signUpLoginLink.locator as "alert"|"alertdialog"|"application"|"article"|"banner"|"blockquote"|"button"|"caption"|"cell"|"checkbox"|"code"|"columnheader"|"combobox"|"complementary"|"contentinfo"|"definition"|"deletion"|"dialog"|"directory"|"document"|"emphasis"|"feed"|"figure"|"form"|"generic"|"grid"|"gridcell"|"group"|"heading"|"img"|"insertion"|"link"|"list"|"listbox"|"listitem"|"log"|"main"|"marquee"|"math"|"meter"|"menu"|"menubar"|"menuitem"|"menuitemcheckbox"|"menuitemradio"|"navigation"|"none"|"note"|"option"|"paragraph"|"presentation"|"progressbar"|"radio"|"radiogroup"|"region"|"row"|"rowgroup"|"rowheader"|"scrollbar"|"search"|"searchbox"|"separator"|"slider"|"spinbutton"|"status"|"strong"|"subscript"|"superscript"|"switch"|"tab"|"table"|"tablist"|"tabpanel"|"term"|"textbox"|"time"|"timer"|"toolbar"|"tooltip"|"tree"|"treegrid"|"treeitem"
+    await page.getByRole(myElement, locate.signUpLoginLink.actionOptions).click()  //locate classdan çektik.
 });
 
 

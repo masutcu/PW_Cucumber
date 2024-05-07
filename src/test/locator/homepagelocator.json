@@ -1,0 +1,16 @@
+{
+    "orneklocatorile":{
+        "locatorOptions":{},
+        "locator":"xpath=//a[@class='products']",
+        "description":"ürünler sayfası",
+        "actionOptions":{
+            "timeout":2000
+        }
+    },
+    "signUpLoginLink": {
+        "locator":"link",
+        "actionOptions":{
+            "name":"Signup"
+    }
+}
+}
