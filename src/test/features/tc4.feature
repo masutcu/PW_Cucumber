@@ -1,13 +1,5 @@
 Feature: TEST CASE-4
-//Test Case 4: Logout User
 
-//4. Click on 'Signup / Login' button
-//5. Verify 'Login to your account' is visible
-//6. Enter correct email address and password
-//7. Click 'login' button
-//8. Verify that 'Logged in as username' is visible
-//9. Click 'Logout' button
-//10. Verify that user is navigated to login page
 
     Background: Launch Browser
         When Navigate to url 'http://automationexercise.com'

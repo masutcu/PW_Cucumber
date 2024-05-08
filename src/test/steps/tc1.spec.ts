@@ -5,17 +5,19 @@ import { expect } from "@playwright/test"
 import { faker } from '@faker-js/faker'
 import  HomePage  from "../pages/homepage"
 import * as locate from "../locator/homepagelocator.json"
+import dotenv from "dotenv"
 
 //Bu sayfada POM kullanılmadı
 setDefaultTimeout(1000 * 60 * 2)
 let homePage:HomePage;
 let randomName: string;
 let randomEmail: string;
+dotenv.config();
 
 When('Navigate to url {string}', async function (url) {
     homePage = new HomePage(page) //burada pom e göre uyarladık
     await homePage.navigateToApp()
-    //await page.goto(url);
+    
 });
 
 
@@ -78,12 +80,13 @@ Then('Verify that ENTER ACCOUNT INFORMATION is visible', async function () {
 
 
 Then('Fill details: Title, Name, Email, Password, Date of birth', async function () {
+    
     //9. Fill details: Title, Name, Email, Password, Date of birth     
     const loginForm = page.locator('.login-form')
     //radio button
     await loginForm.getByRole('radio', { name: 'Mr.' }).first().check()
     //password alanı dolduruyoruz
-    await loginForm.getByRole('textbox', { name: "Password" }).pressSequentially("Istanbul1453", { delay: 100 })
+    await loginForm.getByRole('textbox', { name: "Password" }).pressSequentially(process.env.psw!, { delay: 100 })
 
     //dropdown
     //page.locator('#days').click()
@@ -143,12 +146,10 @@ Then('Verify that ACCOUNT CREATED! is visible', async function () {
 });
 
 
-
 Then('Click Continue button', async function () {
 
     await page.getByRole('link', { name: 'Continue' }).click()
 });
-
 
 
 Then('Verify that Logged in as username is visible', async function () {
