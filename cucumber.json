@@ -16,7 +16,7 @@
             "dotenv"
         ],
         "format": [
-            "html:cucumber-report.html"
+            "html:reports/cucumber-report.html"
         ],
         "retry": 1
     }
